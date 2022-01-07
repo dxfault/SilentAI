@@ -1,0 +1,42 @@
+THIS AI IS A YOUTUBE AI ONLY, IT CAN ONLY GO ON YOUTUBE AND PLAY ANY SONG YOU TELL HIM TO PLAY
+
+#first you want to download PyCharm
+#Then click on Terminal and type '' pip install SpeechRecognition '' and press enter
+#Then again in the Terminal type '' pip install pywhatkit '' and press enter 
+
+#After you've done that just copy and paste the code on to you PyCharm and press play, make sure you say '' Silent, Play ( any song ) '' 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import speech_recognition as sr
+import pywhatkit
+
+
+
+listener = sr.Recognizer()
+
+def take_command():
+    try:
+      with sr.Microphone() as source:
+        print('listening...')
+        voice = listener.listen(source)
+        command = listener.recognize_google(voice)
+        command = command.lower()
+        if 'silent' in command:
+            command = command.replace('silent', '')
+            print(command)
+    except:
+         pass
+    return command
+
+
+def run_silent():
+    command = take_command()
+    print(command)
+    if 'play' in command:
+        song = command.replace('play', '')
+        print ('on it')
+        print(song)
+        pywhatkit.playonyt(song)
+
+while True:
+    run_silent()
